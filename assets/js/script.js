@@ -2,7 +2,7 @@ var tasks = {};
 var auditTask = function(taskEl) {
   // get date from task element
   var date = $(taskEl).find("span").text().trim();
-
+  console.log(taskEl)
   // convert to moment object at 5:00pm
   var time = moment(date, "L").set("hour", 17);
 
@@ -281,4 +281,10 @@ loadTasks();
 $("#modalDueDate").datepicker({
   minDate: 1
 });
+
+setInterval(function() {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, (1000 * 60) * 30);
 
